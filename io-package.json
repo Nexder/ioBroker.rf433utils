@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "rf433utils",
-		"version": "0.0.1",
+		"version": "0.0.2",
 		"news": {
 			"0.0.1": {
 				"en": "initial release",
@@ -53,7 +53,7 @@
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
 		"main": "main.js",
-		"icon": "rf433utils.png",
+		"icon": "admin/rf433utils.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Nexder/ioBroker.rf433utils/master/admin/rf433utils.png",
 		"readme": "https://github.com/Nexder/ioBroker.rf433utils/blob/master/README.md",
