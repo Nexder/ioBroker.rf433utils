@@ -1,0 +1,65 @@
+{
+  "common": {
+    "name": "433Utils Bridge",
+    "version": "0.0.1",
+    "news": {
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung"
+      }
+    },
+    "title": "433Utils Bridge",
+    "titleLang": {
+      "en": "433Utils Bridge",
+      "de": "433Utils Bridge"
+    },
+    "desc": {
+      "en": "Control and Read 433MHz Devices with 433Utils",
+      "de": "Steuern und Auswerten von 433MHz Geräten über 433Utils"
+    },
+    "authors": [
+      "Christian Tügel <info@ctcomputertechnik.de>"
+    ],
+    "keywords": [
+      "ioBroker",
+      "433MHz",
+      "Smart Home",
+      "home automation"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "template.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
+    "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "general",
+    "compact": true,
+    "materialize": true,
+    "materializeTab": true,
+    "adminTab": {
+      "singleton": true,
+      "name": {
+      "en": "433Utils Bridge",
+      "de": "433Utils Bridge"
+      },
+      "link": "",
+      "fa-icon": "info"
+    },
+    "supportCustoms": true,
+    "dependencies": [
+      {
+        "js-controller": ">=1.4.2"
+      }
+    ],
+    "installedFrom": "https://github.com/ioBroker/ioBroker.template/tree/master/JavaScript/tarball/095fcc4b21d64fd275d5d746db01f766b23b2393"
+  },
+  "native": {
+    "option1": true,
+    "option2": "42"
+  },
+  "objects": [],
+  "instanceObjects": []
+}
