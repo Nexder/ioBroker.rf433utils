@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "rf433utils",
-		"version": "0.0.2",
+		"version": "0.0.3",
 		"news": {
 			"0.0.1": {
 				"en": "initial release",
@@ -46,7 +46,8 @@
 		],
 		"keywords": [
 			"ioBroker",
-			"template",
+			"433MHz",
+			"NinjaBlocks",
 			"Smart Home",
 			"home automation"
 		],
@@ -71,9 +72,10 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
-	},
+        "devices":       [],
+        "SnifferPath": '/home/pi/433Utils/RPi_utils/RFSniffer',
+        "CodeSendPath": '/home/pi/433Utils/RPi_utils/codesend'
+    },
 	"objects": [],
 	"instanceObjects": []
 }
