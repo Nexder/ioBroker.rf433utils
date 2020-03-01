@@ -5,15 +5,15 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 ![Number of Installations (latest)](http://iobroker.live/badges/template-installed.svg)
 ![Number of Installations (stable)](http://iobroker.live/badges/template-stable.svg)
-[![Dependency Status](https://img.shields.io/david/Author/iobroker.template.svg)](https://david-dm.org/Author/iobroker.template)
-[![Known Vulnerabilities](https://snyk.io/test/github/Author/ioBroker.template/badge.svg)](https://snyk.io/test/github/Author/ioBroker.template)
+[![Dependency Status](https://img.shields.io/david/Author/iobroker.template.svg)](https://david-dm.org/Nexder/iobroker.rf433utils)
+[![Known Vulnerabilities](https://snyk.io/test/github/Nexder/ioBroker.rf433utils/badge.svg)](https://snyk.io/test/github/Author/ioBroker.template)
 
-[![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
+[![NPM](https://nodei.co/npm/iobroker.rf433utils.png?downloads=true)](https://nodei.co/npm/iobroker.rf433utils/)
 
 ## rf433utils adapter for ioBroker
 The rf433utils adapter is for getting access to local installed rf-receiver and sender, which are able to control by [433Utils](https://github.com/ninjablocks/433Utils) from Ninjablocks.
 
-With the adapter you are able to define devices with the on- and offswitch code and read/send code to 433Mhz devices.
+With the adapter you are able to define devices with theire on- and offswitch code and read/send code to an from them.
 
 
 
@@ -21,7 +21,12 @@ With the adapter you are able to define devices with the on- and offswitch code 
 
 ### Hardware
 
-Raspberry Pi
+##### Raspberry Pi
+
+- Receiver DATA -> GPIO17
+- Sender DATA -> GPIO2  
+  - Raspberry Rev.1 -> GPIO pin 21 
+  - Raspberry Rev2 -> GPIO pin 27
 
 
 
@@ -50,8 +55,6 @@ make
 ## Configuration
 
 Point the fullpath to RFSniffer and codesend scripts to the 433Utils installation.
-
-
 
 
 
