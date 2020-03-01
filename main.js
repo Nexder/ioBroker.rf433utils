@@ -60,6 +60,24 @@ class Template extends utils.Adapter
 		{
 			this.log.info(`child process exited with code ${code}`);
 		});
+		
+		for (let k = 0; k < this.config.devices.length; k++) 
+		{
+			const device = this.config.devices[k];
+			this.setObjectNotExists(`${device.id}`,
+			{
+				type: 'state',
+				common:
+				{
+					name: `${device.name}`,
+					type: 'boolean',
+					role: 'indicator',
+					read: true,
+					write: true,
+				},
+				native: {},
+			});
+		}
 
         // in this template all states changes inside the adapters namespace are subscribed
         this.subscribeStates('*');
@@ -73,6 +91,7 @@ class Template extends utils.Adapter
 	{
         try 
 		{
+			clearInterval(timer);
             this.log.info('cleaned everything up...');
             callback();
         } 
@@ -112,16 +131,16 @@ class Template extends utils.Adapter
 		{
 			if (state.ack == false)
 			{
-				this.log.silly(`Start SendCodeByID`);			
+				this.log.debug(`Start SendCodeByID`);			
 				await this.SendCodeByID(id.split('.').pop(), state.val);
 			}
             // The state was changed
-            this.log.silly(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } 
 		else 
 		{
             // The state was deleted
-            this.log.silly(`state ${id} deleted`);
+            this.log.debug(`state ${id} deleted`);
         }
     }
 	
@@ -129,7 +148,7 @@ class Template extends utils.Adapter
 	{
 		try
 		{
-			this.log.silly('check all Timer');
+			this.log.debug('check all Timer');
 			let foundtimer = false;
 			// Regelmäßig alle Devices durchgehen und prüfen, ob ein Timer aktiv ist
 			for (let k = 0; k < this.config.devices.length; k++) 
@@ -141,7 +160,7 @@ class Template extends utils.Adapter
 					// Prüfen, ob Akteur abgeschaltet werden muss
 					if (new Date().getTime() > device.timerTimeEnd)
 					{
-						this.log.silly(`disable Device Timer`);
+						this.log.debug(`disable Device Timer`);
 					
 						this.setStateAsync(`${device.id}`, { val: false, ack: true });
 						device.timerIsActive = false;
@@ -152,7 +171,7 @@ class Template extends utils.Adapter
 			if (!foundtimer)
 			{
 				// Timer stoppen, wenn kein Akteur einen aktiven Timer besitzt
-				this.log.silly('deactivate Timer');
+				this.log.debug('deactivate Timer');
 				clearInterval(timer);
 				timerIsActive = false;
 			}
@@ -183,17 +202,17 @@ class Template extends utils.Adapter
 			});
 			if (state == false || !device.timer)
 			{
-				this.log.silly(`Set normal`);
+				this.log.debug(`Set normal`);
 				await this.setStateAsync(`${device.id}`, { val: state, ack: true });
 			}
 			else
 			{
 				if (!device.timerIsActive)
 				{
-					this.log.silly(`start device timer`);					
+					this.log.debug(`start device timer`);					
 					device.timerTimeEnd = new Date().getTime() + (device.timer * 1000);
 					device.timerIsActive = true;
-					this.log.silly(`Set with timer ${device.timer}s`);
+					this.log.debug(`Set with timer ${device.timer}s`);
 					//await this.setStateAsync(`${device.name}`, { val: state, ack: true, expire: device.timer });
 					await this.setStateAsync(`${device.id}`, { val: state, ack: true });
 					if(!timerIsActive)
@@ -206,7 +225,7 @@ class Template extends utils.Adapter
 				{
 					// Extend Timeout
 					device.timerTimeEnd = new Date().getTime() + (device.timer * 1000);
-					this.log.silly(`Extend Timer`);
+					this.log.debug(`Extend Timer`);
 				}
 			}
 		}
@@ -230,18 +249,18 @@ class Template extends utils.Adapter
 				for (let k = 0; k < this.config.devices.length; k++) 
 				{
 					const device = this.config.devices[k];
-					this.log.silly(`Device ${device.id}`);
-					this.log.silly(`CodeOn ${device.codeOn}`);
-					this.log.silly(`Code ${code}`);
+					this.log.debug(`Device ${device.id}`);
+					this.log.debug(`CodeOn ${device.codeOn}`);
+					this.log.debug(`Code ${code}`);
 					
 					if (device.codeOn == code)
 					{
-						this.log.silly(`Incoming Turn On ${device.id}`);
+						this.log.debug(`Incoming Turn On ${device.id}`);
 						this.AddOrUpdateObject(device, true);
 					}
 					else if (device.codeOff == code)
 					{
-						this.log.silly(`Incoming Turn Off ${device.id}`);
+						this.log.debug(`Incoming Turn Off ${device.id}`);
 						this.AddOrUpdateObject(device, false);
 					}
 				}
@@ -257,7 +276,7 @@ class Template extends utils.Adapter
 	{
 		try
 		{
-			this.log.silly('Search Send-Device');
+			this.log.debug('Search Send-Device');
 		    if (!this.config.devices.length) 
 			{
 				this.log.warn('No Device configured');
@@ -267,9 +286,9 @@ class Template extends utils.Adapter
 				for (let k = 0; k < this.config.devices.length; k++) 
 				{
 					const device = this.config.devices[k];
-					this.log.silly(`Device ${device.id}`);
-					this.log.silly(`Code ${state}`);
-					this.log.silly(`Name ${name}`);
+					this.log.debug(`Device ${device.id}`);
+					this.log.debug(`Code ${state}`);
+					this.log.debug(`Name ${name}`);
 					
 					if (device.id == name)
 					{
