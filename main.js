@@ -41,9 +41,24 @@ class Template extends utils.Adapter
 		{
 			try
 			{
-			  // Eingehende Signale auswerten
-			  this.UpdateDeviceByCode(`${data}`.replace('Received', '').trim());
-			  this.log.debug(`stdout: ${data}`);
+				// Eingehendes Signal protokollieren
+				this.setObjectNotExists(`Last incoming code`,
+				{
+					type: 'state',
+					common:
+					{
+						name: `Last incoming code`,
+						type: 'string',
+						role: '',
+						read: true,
+						write: true,
+					},
+					native: {},
+				});
+				this.setStateAsync(`Last incoming code`, { val: `${data}`.replace('Received', '').trim(), ack: true });
+				// Eingehende Signale auswerten
+				this.UpdateDeviceByCode(`${data}`.replace('Received', '').trim());
+				this.log.debug(`stdout: ${data}`);
 			}
 			catch (ex)
 			{
@@ -131,7 +146,7 @@ class Template extends utils.Adapter
 		{
 			if (state.ack == false)
 			{
-				this.log.debug(`Start SendCodeByID`);			
+				this.log.debug(`Start SendCodeByID`);
 				await this.SendCodeByID(id.split('.').pop(), state.val);
 			}
             // The state was changed
