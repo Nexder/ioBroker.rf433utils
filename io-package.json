@@ -47,16 +47,12 @@
 			"pl": "rf433utils",
 			"zh-cn": "rf433utils"
 		},
-		"authors": [
-			"Nexder <info@ctcomputertechnik.de>"
-		],
-		"keywords": [
-			"ioBroker",
-			"433MHz",
-			"NinjaBlocks",
-			"Smart Home",
-			"home automation"
-		],
+		"authors": ["Nexder <info@ctcomputertechnik.de>"],
+		"keywords": ["ioBroker",
+		"433MHz",
+		"NinjaBlocks",
+		"Smart Home",
+		"home automation"],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
 		"main": "main.js",
@@ -71,17 +67,15 @@
 		"connectionType": "local",
 		"dataSource": "push",
 		"materialize": true,
-		"dependencies": [
-			{
-				"js-controller": ">=1.4.2"
-			}
-		]
+		"dependencies": [{
+			"js-controller": ">=1.4.2"
+		}]
 	},
 	"native": {
-        "devices":       [],
-        "SnifferPath": "/home/pi/433Utils/RPi_utils/RFSniffer",
-        "CodeSendPath": "/home/pi/433Utils/RPi_utils/codesend"
-    },
+		"devices": [],
+		"SnifferPath": "/home/pi/433Utils/RPi_utils/RFSniffer",
+		"CodeSendPath": "/home/pi/433Utils/RPi_utils/codesend"
+	},
 	"objects": [],
 	"instanceObjects": []
 }
